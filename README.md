@@ -7,5 +7,6 @@
 + https://github.com/Eom-Hyejin
 + https://github.com/planethoon
 + https://github.com/ydh94
-+ 5
++ 5명참여
+
 ![image](https://user-images.githubusercontent.com/85682854/128624654-b9aa819a-6a1d-4a76-a3db-343b4d6e7db6.png)
