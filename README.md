@@ -25,3 +25,6 @@
 1팀 Todo - developerjhp , ydh94, Eom-Hyejin
 
 2팀 Reminder - planethoon, glen15, devTiana
+
+
+> todoTeam,  reminderTeam 브랜치 생성  2021 / 08 / 23 (월)
