@@ -6,13 +6,13 @@ import uuid from "react-uuid";
 const Reminder = () => {
   const dummy = [
     {
-      id: 1,
+      id: uuid(),
       name: "물 마시기",
       time: 30,
       isOn: true,
     },
     {
-      id: 2,
+      id: uuid(),
       name: "스트레칭",
       time: 60,
       isOn: true,

@@ -1,13 +1,22 @@
 import "./ReminderElement.css";
 
-function ReminderElement({
+// function ReminderElement({
+//   name,
+//   time,
+//   isOn,
+//   deleteDummy,
+//   toggleHandler,
+//   // setName,
+// })     // 화살표함수로 변경 -jhp-
+
+const ReminderElement = ({
   name,
   time,
   isOn,
   deleteDummy,
   toggleHandler,
   // setName,
-}) {
+}) => {
   return (
     <div className="reminderElement">
       <span>{name}</span>
