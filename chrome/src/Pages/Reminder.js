@@ -6,13 +6,13 @@ import uuid from "react-uuid";
 const Reminder = () => {
   const dummy = [
     {
-      id: uuid(),
+      id: 1,
       name: "물 마시기",
       time: 30,
       isOn: true,
     },
     {
-      id: uuid(),
+      id: 2,
       name: "스트레칭",
       time: 60,
       isOn: true,
@@ -27,7 +27,7 @@ const Reminder = () => {
       {
         id: uuid(),
         name: "입력바람",
-        time: "시간설정",
+        time: 0,
         isOn: true,
       },
     ]);
@@ -61,15 +61,18 @@ const Reminder = () => {
   return (
     <div className="container__reminder">
       <h3 className="reminder__title">Reminder</h3>
-      {reminderList.map((e) => {
+      {reminderList.map((e, idx) => {
         return (
           <ReminderElement
+            idx={idx}
             key={e.id}
             name={e.name}
             time={e.time}
             isOn={e.isOn}
             deleteDummy={() => deleteDummy(e)}
             toggleHandler={() => toggleHandler(e)}
+            reminderList={reminderList}
+            setReminderList={setReminderList}
             // setName={() => setName(e)}
           />
         );

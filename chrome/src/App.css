@@ -15,6 +15,19 @@
   --color-btn: #74cae7;
 }
 
+/* input css reset */
+input[type="text"] {
+  width: 100%; /* 나중에 원하는 사이즈로 수정 */
+  height: auto; /* 높이 초기화 */
+  font-family: inherit;
+  line-height: normal; /* line-height 초기화 */
+  border: none;
+  outline-style: none;
+  -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .container__app {
   width: 380px;
   height: 500px;

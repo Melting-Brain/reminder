@@ -1,3 +1,4 @@
+/** reminderElement **/
 .reminderElement {
   width: 75%;
   display: flex;
@@ -8,6 +9,8 @@
   padding: 5px 20px;
   margin: 10px 20px;
 }
+
+/* reminderElement - Toggle Button */
 .reminder__toggle__container {
   width: 20px;
   height: 12px;
@@ -29,4 +32,15 @@
 }
 .reminder__toggle__circle__false {
   left: 2px;
+}
+
+/* reminderElement - Input Name */
+.reminder__edit__name {
+  flex: 1;
+}
+
+/* reminderElement - Input Time */
+.reminder__edit__time {
+  text-align: right;
+  flex: 1;
 }
