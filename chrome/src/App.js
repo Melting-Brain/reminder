@@ -10,7 +10,7 @@ function App() {
     <div className='container__app'>
       <BrowserRouter>
         <div className='container__nav'>
-          <Nav />
+          <Nav /> 
         </div>
         <div className='container__pages'>
           <Switch>
