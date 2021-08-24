@@ -23,6 +23,6 @@ const TodoElement = ({
       </div>
     </div>
   );
-};
+}
 
 export default TodoElement;
