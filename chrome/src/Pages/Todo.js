@@ -19,6 +19,10 @@ const Todo = () => {
 
   const [todoList, setTodoList] = useState(todoDummy);
   const [doneList, setDoneList] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const openModalHandler = () => {
+    setIsOpen(!isOpen)
+  };
 
   const addTodoDummy = () => {
     setTodoList([
@@ -38,7 +42,6 @@ const Todo = () => {
   const deleteTodoDummy2 = (e) => {
     setDoneList(doneList.filter((el) => el.id !== e.id))
   }
-
 
   const handleCheckChange = (check, id) => {
     if(check) {
@@ -68,9 +71,18 @@ const Todo = () => {
         );
       })}
       <div className="todo__container__add">
-        <div className="todo__add" onClick={addTodoDummy}>
+        <div className="todo__add" onClick={openModalHandler}>
           +
         </div>
+        {isOpen === false ? 
+          null :
+        <div className='modalBackdrop' onClick={openModalHandler}>
+          <div className='modalView' onClick={(e) => e.stopPropagation()}>
+            <div onClick={openModalHandler} className='close-btn'>&times;</div>
+            <div className='desc'>Hi Hello?</div>
+          </div>
+        </div>
+      }
       </div>
       <div><h3>Done List</h3></div>
       {doneList.map((e) => {

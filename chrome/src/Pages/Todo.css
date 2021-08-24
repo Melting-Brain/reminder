@@ -24,3 +24,38 @@
   background: var(--color-lightblue);
   border-radius: 50%;
 }
+
+.modalBackdrop {
+  position: fixed;
+z-index: 999;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #F0FFFF;
+display: grid; 
+place-items: center;
+}
+
+.modalView {
+  width: 30%;
+  height: 30%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.close_btn { 
+  margin-top: 5%;
+  text-align: right;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.desc {
+  text-align: center;
+  margin-top: 30%;
+  color: #1a237e;
+}
