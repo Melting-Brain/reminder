@@ -75,7 +75,7 @@ const Todo = () => {
         <div className="todo__add" onClick={openModalHandler}>
           +
         </div>
-        <TodoModal openModalHandler={openModalHandler} isOpen={isOpen}/>
+        <TodoModal openModalHandler={openModalHandler} isOpen={isOpen} setTodoList={setTodoList} addTodoDummy={addTodoDummy}/>
       </div>
       <div><h3>Done List</h3></div>
       {doneList.map((e) => {
