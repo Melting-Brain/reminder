@@ -27,7 +27,7 @@ const Reminder = () => {
       {
         id: uuid(),
         name: "입력바람",
-        time: 0,
+        time: "0",
         isOn: true,
       },
     ]);
@@ -42,7 +42,6 @@ const Reminder = () => {
     let toggleList = reminderList.map((el) => {
       if (e.id === el.id) {
         el.isOn = !el.isOn;
-        console.log("바꿈");
       }
       return el;
     });

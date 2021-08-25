@@ -11,12 +11,29 @@ function ReminderElement({
   setReminderList,
   idx,
 }) {
+  const [isToggleOn, setIsToggleOn] = useState(isOn);
   const [isEditName, setIsEditName] = useState(false);
   const [isEditTime, setIsEditTime] = useState(false);
   const [newName, setNewName] = useState(name);
   const [newTime, setNewTime] = useState(time);
   const inputName = useRef(null);
   const inputTime = useRef(null);
+
+  useEffect(() => {
+    setIsToggleOn(isOn);
+  }, [isOn]);
+
+  const showPopup = () => {
+    setTimeout(() => {
+      console.log("hi");
+    }, time * 60000);
+  };
+
+  useEffect(() => {
+    if (isToggleOn) {
+      showPopup();
+    }
+  }, [isToggleOn]);
 
   useEffect(() => {
     if (isEditName) {
@@ -37,7 +54,6 @@ function ReminderElement({
   };
 
   const handleBlur = (e) => {
-    console.log(e.target.parentNode.className);
     if (e.target.parentNode.className === "reminder__edit__name") {
       setIsEditName(!isEditName);
       let newList = reminderList.map((el, index) => {
@@ -74,7 +90,7 @@ function ReminderElement({
             }}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
-                handleBlur();
+                handleBlur(e);
               }
             }}
           />
@@ -98,16 +114,19 @@ function ReminderElement({
             onBlur={(e) => handleBlur(e)}
             ref={inputTime}
             onChange={(e) => {
+              if (Number(e.target.value) < 0) {
+                e.target.value = "0";
+              }
               setNewTime(e.target.value);
             }}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
-                handleBlur();
+                handleBlur(e);
               }
             }}
           />
         </div>
-      ) : newTime === 0 ? (
+      ) : newTime === "0" || newTime === "" ? (
         <div className="reminder__edit__time" onClick={(e) => handleEdit(e)}>
           숫자입력
         </div>
