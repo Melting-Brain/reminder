@@ -26,6 +26,7 @@ const Todo = () => {
   };
 
   const addTodoDummy = () => {
+    setIsOpen(!isOpen)
     setTodoList([
       ...todoList,
       {
