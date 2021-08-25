@@ -2,6 +2,7 @@ import { useState } from "react";
 import TodoElement from "../Components/TodoElement";
 import "./Todo.css";
 import uuid from "react-uuid";
+import TodoModal from "../Components/TodoModal"
 
 const Todo = () => {
   const todoDummy = [
@@ -74,15 +75,7 @@ const Todo = () => {
         <div className="todo__add" onClick={openModalHandler}>
           +
         </div>
-        {isOpen === false ? 
-          null :
-        <div className='modalBackdrop' onClick={openModalHandler}>
-          <div className='modalView' onClick={(e) => e.stopPropagation()}>
-            <div onClick={openModalHandler} className='close-btn'>&times;</div>
-            <div className='desc'>Hi Hello?</div>
-          </div>
-        </div>
-      }
+        <TodoModal openModalHandler={openModalHandler} isOpen={isOpen}/>
       </div>
       <div><h3>Done List</h3></div>
       {doneList.map((e) => {
