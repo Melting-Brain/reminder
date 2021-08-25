@@ -2,9 +2,9 @@
   "short_name": "Reminder",
   "name": "Melting Brain's Reminder",
   "icons": {
-    "16": "favicon.ico",
-    "48": "logo192.png",
-    "128": "logo512.png"
+    "16": "reminder.png",
+    "48": "reminder.png",
+    "128": "reminder.png"
   },
   "permissions": [],
   "manifest_version": 2,
