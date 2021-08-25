@@ -9,7 +9,7 @@ const containerStyles = {
     maxWidth: 300, 
 };
 // const initialState = { value: new Date() };
-const [Time,setTime] = useState({ value: new Date() })
+const [Time,setTime] = useState({ value: new Date().toString().split(' ')[4] })
   return (
     <div>
         <TimePicker
