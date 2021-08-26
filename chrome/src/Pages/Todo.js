@@ -8,14 +8,20 @@ const Todo = () => {
   const todoDummy = [
     {
       id: uuid(),
-      name: "복습하기",
-      isChecked: false,
+      name : '앙',
+      isChecked : false,
+      checkDeadLine : true,
+      deadLine : '날짜 추가하기',
+      isAlert : true,
     },
     {
       id: uuid(),
-      name: "비타민챙겨먹기",
-      isChecked: false,
-    },
+      name : '잉',
+      isChecked : false,
+      checkDeadLine : true,
+      deadLine : '날짜 추가하기',
+      isAlert : true,
+    }
   ];
 
   const [todoList, setTodoList] = useState(todoDummy);
@@ -25,17 +31,24 @@ const Todo = () => {
     setIsOpen(!isOpen)
   };
 
-  const addTodoDummy = () => {
+  const addTodoDummy = (toDoObj) => {
     setIsOpen(!isOpen)
     setTodoList([
       ...todoList,
-      {
-        id: uuid(),
-        name: "입력바람",
-        isChecked: false,
-      },
+      toDoObj,
     ]);
   };
+
+  // const [alarm, setAlarm] = useState(false);
+  // const [deadline, setDeadLine] = useState(false);
+
+  // const handleAlarm = () => {
+  //   setAlarm(!alarm);
+  // }
+
+  // const handleDeadLine = () => {
+  //   setDeadLine(!deadline);
+  // }
 
   const deleteTodoDummy = (e) => {
     setTodoList(todoList.filter((el) => el.id !== e.id));
@@ -69,6 +82,8 @@ const Todo = () => {
             setTodoList={setTodoList}
             handleCheckChange={handleCheckChange}
             deleteTodoDummy={() => deleteTodoDummy(e)}
+            isAlert={e.isAlert}
+            deadline={e.checkDeadLine}
           />
         );
       })}
@@ -89,6 +104,8 @@ const Todo = () => {
             setTodoList={setTodoList}
             handleCheckChange={handleCheckChange}
             deleteTodoDummy={() => deleteTodoDummy2(e)}
+            isAlert={e.isAlert}
+            deadline={e.checkDeadLine}
           />
         );
       })}
