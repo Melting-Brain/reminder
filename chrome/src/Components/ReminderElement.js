@@ -13,7 +13,6 @@ function ReminderElement({
 }) {
   const [isToggleOn, setIsToggleOn] = useState(isOn);
   const [isEditName, setIsEditName] = useState(false);
-  const [isEditTime, setIsEditTime] = useState(false);
   const [newName, setNewName] = useState(name);
   const [newTime, setNewTime] = useState(time);
   const inputName = useRef(null);
@@ -23,15 +22,12 @@ function ReminderElement({
     setIsToggleOn(isOn);
   }, [isOn]);
 
-  const showPopup = () => {
-    setTimeout(() => {
-      console.log("hi");
-    }, time * 60000);
-  };
-
   useEffect(() => {
-    if (isToggleOn) {
-      showPopup();
+    let timerID = setInterval(() => {
+      console.log(name);
+    }, time * 1000);
+    if (!isToggleOn) {
+      clearInterval(timerID);
     }
   }, [isToggleOn]);
 
@@ -39,17 +35,11 @@ function ReminderElement({
     if (isEditName) {
       inputName.current.focus();
     }
-    if (isEditTime) {
-      inputTime.current.focus();
-    }
-  }, [isEditName, isEditTime]);
+  }, [isEditName]);
 
   const handleEdit = (e) => {
     if (e.target.className === "reminder__edit__name") {
       setIsEditName(!isEditName);
-    }
-    if (e.target.className === "reminder__edit__time") {
-      setIsEditTime(!isEditTime);
     }
   };
 
@@ -65,7 +55,6 @@ function ReminderElement({
       setReminderList([...newList]);
     }
     if (e.target.parentNode.className === "reminder__edit__time") {
-      setIsEditTime(!isEditTime);
       let newList = reminderList.map((el, index) => {
         if (index === idx) {
           el.time = newTime;
@@ -75,40 +64,67 @@ function ReminderElement({
       setReminderList([...newList]);
     }
   };
+
   return (
     <div className="reminderElement">
-      {isEditName ? (
-        <div className="reminder__edit__name">
-          <input
-            type="text"
-            value={newName}
-            placeholder={"입력바람"}
-            onBlur={(e) => handleBlur(e)}
-            ref={inputName}
-            onChange={(e) => {
-              setNewName(e.target.value);
-            }}
-            onKeyUp={(e) => {
-              if (e.key === "Enter") {
-                handleBlur(e);
-              }
-            }}
-          />
-        </div>
-      ) : newName.length === 0 ? (
-        <div className="reminder__edit__name" onClick={(e) => handleEdit(e)}>
-          입력바람
-        </div>
-      ) : (
-        <div className="reminder__edit__name" onClick={(e) => handleEdit(e)}>
-          {name}
-        </div>
-      )}
+      <div className="reminder__row">
+        {/* Reminder Name */}
+        {isEditName ? (
+          <div className="reminder__edit__name">
+            <input
+              type="text"
+              value={newName}
+              placeholder={"입력바람"}
+              onBlur={(e) => handleBlur(e)}
+              ref={inputName}
+              onChange={(e) => {
+                setNewName(e.target.value);
+              }}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  handleBlur(e);
+                }
+              }}
+            />
+          </div>
+        ) : newName.length === 0 ? (
+          <div className="reminder__edit__name" onClick={(e) => handleEdit(e)}>
+            입력바람
+          </div>
+        ) : (
+          <div className="reminder__edit__name" onClick={(e) => handleEdit(e)}>
+            {name}
+          </div>
+        )}
 
-      {isEditTime ? (
+        {/* Toggle button */}
+        <div
+          className={
+            isOn
+              ? "reminder__toggle__container"
+              : "reminder__toggle__container reminder__toggle__container__false"
+          }
+          onClick={toggleHandler}
+        >
+          <div
+            className={
+              isOn
+                ? "reminder__toggle__circle"
+                : "reminder__toggle__circle reminder__toggle__circle__false"
+            }
+          ></div>
+        </div>
+      </div>
+
+      <div className="reminder__row">
+        {/* Interval Setting */}
         <div className="reminder__edit__time">
           <input
-            type="number"
+            className="reminder__adjust__time"
+            type="range"
+            min="0"
+            max="300"
+            step="10"
             value={newTime}
             placeholder={"숫자입력"}
             onBlur={(e) => handleBlur(e)}
@@ -125,34 +141,13 @@ function ReminderElement({
               }
             }}
           />
+          <div className="reminder__display__time">{newTime} 분</div>
         </div>
-      ) : newTime === "0" || newTime === "" ? (
-        <div className="reminder__edit__time" onClick={(e) => handleEdit(e)}>
-          숫자입력
+
+        {/* Delete Button */}
+        <div className="reminder__delete" onClick={deleteDummy}>
+          <i class="far fa-trash-alt"></i>
         </div>
-      ) : (
-        <div className="reminder__edit__time" onClick={(e) => handleEdit(e)}>
-          {time} 분
-        </div>
-      )}
-      <div
-        className={
-          isOn
-            ? "reminder__toggle__container"
-            : "reminder__toggle__container reminder__toggle__container__false"
-        }
-        onClick={toggleHandler}
-      >
-        <div
-          className={
-            isOn
-              ? "reminder__toggle__circle"
-              : "reminder__toggle__circle reminder__toggle__circle__false"
-          }
-        ></div>
-      </div>
-      <div className="reminder__delete" onClick={deleteDummy}>
-        X
       </div>
     </div>
   );

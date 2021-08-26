@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReminderElement from "../Components/ReminderElement";
 import "./Reminder.css";
 import uuid from "react-uuid";
@@ -21,13 +21,19 @@ const Reminder = () => {
 
   const [reminderList, setReminderList] = useState(dummy);
 
+  useEffect(() => {
+    if (localStorage.getItem("reminderData") !== null) {
+      setReminderList(JSON.parse(localStorage.getItem("reminderData")));
+    }
+  }, []);
+
   const addDummy = () => {
     setReminderList([
       ...reminderList,
       {
         id: uuid(),
         name: "입력바람",
-        time: "0",
+        time: 10,
         isOn: true,
       },
     ]);
@@ -47,6 +53,10 @@ const Reminder = () => {
     });
     setReminderList([...toggleList]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("reminderData", JSON.stringify(reminderList)); //리마인더리스트를 로컬스토리지에 저장
+  }, [reminderList]);
 
   // const setName = (e) => {    // 이름변경  함수
   //   let list2 = reminderList.map((el) => {
@@ -78,7 +88,7 @@ const Reminder = () => {
       })}
       <div className="reminder__container__add">
         <div className="reminder__add" onClick={addDummy}>
-          +
+          <i className="fas fa-plus"></i>
         </div>
       </div>
     </div>

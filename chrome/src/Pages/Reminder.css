@@ -6,13 +6,15 @@
 }
 
 .reminder__container__add {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 5px 20px;
+  width: 75%;
+  height: 46px;
+  padding: 10px 14px;
   margin: 10px 20px;
+  background-color: var(--color-background);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .reminder__add {
@@ -21,6 +23,6 @@
   color: var(--color-white);
   text-align: center;
   line-height: 30px;
-  background: var(--color-lightblue);
+  background: var(--color-blue);
   border-radius: 50%;
 }
