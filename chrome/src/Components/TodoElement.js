@@ -21,8 +21,8 @@ const TodoElement = ({
         checked={isChecked}
         />
       <span>{name}</span>
-      { deadline ? ( isAlert ? (<><i className="fas fa-bell"></i><span>{'시계'}</span></>) : <><i className="far fa-bell-slash"></i><span>{'시계'}</span></> ) : null}
-      <span>{'수정'}</span>
+      { deadline ? ( isAlert ? (<><i className="fas fa-bell"></i><span>{<i className="fas fa-stopwatch"></i>}</span></>) : <><i className="far fa-bell-slash"></i><span>{<i className="fas fa-stopwatch"></i>}</span></> ) : null}
+      <span>{<i className="fas fa-edit"></i>}</span>
       <div className="todo__delete" onClick={deleteTodoDummy}>
         X
       </div>
