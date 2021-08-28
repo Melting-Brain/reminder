@@ -22,14 +22,21 @@ function ReminderElement({
     setIsToggleOn(isOn);
   }, [isOn]);
 
+  const [timerID, setTimerID] = useState(null);
   useEffect(() => {
-    let timerID = setInterval(() => {
-      console.log(name);
-    }, time * 1000);
-    if (!isToggleOn) {
-      clearInterval(timerID);
+    const timer = () => {
+      console.log("timer started!");
+      return setInterval(() => {
+        console.log(`${name} ${time}초 지났습니다.`);
+      }, time * 1000);
+    };
+
+    clearInterval(timerID);
+    if (isToggleOn) {
+      setTimerID(timer());
+      console.log(timerID);
     }
-  }, [isToggleOn]);
+  }, [name, time, isToggleOn]);
 
   useEffect(() => {
     if (isEditName) {
@@ -54,16 +61,18 @@ function ReminderElement({
       });
       setReminderList([...newList]);
     }
-    if (e.target.parentNode.className === "reminder__edit__time") {
-      let newList = reminderList.map((el, index) => {
-        if (index === idx) {
-          el.time = newTime;
-        }
-        return el;
-      });
-      setReminderList([...newList]);
-    }
   };
+
+  // 시간 바꿀때 리마인드 리스트에 적용되는 시점을 온블러에서 뉴 타임이 바뀔때로 바꿈.
+  useEffect(() => {
+    let newList = reminderList.map((el, index) => {
+      if (index === idx) {
+        el.time = newTime;
+      }
+      return el;
+    });
+    setReminderList([...newList]);
+  }, [newTime]);
 
   return (
     <div className="reminderElement">
@@ -122,12 +131,11 @@ function ReminderElement({
           <input
             className="reminder__adjust__time"
             type="range"
-            min="0"
+            min="10"
             max="300"
             step="10"
             value={newTime}
             placeholder={"숫자입력"}
-            onBlur={(e) => handleBlur(e)}
             ref={inputTime}
             onChange={(e) => {
               if (Number(e.target.value) < 0) {

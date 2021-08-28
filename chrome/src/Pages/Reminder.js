@@ -19,12 +19,13 @@ const Reminder = () => {
     },
   ];
 
-  const [reminderList, setReminderList] = useState(dummy);
+  const [reminderList, setReminderList] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem("reminderData") !== null) {
-      setReminderList(JSON.parse(localStorage.getItem("reminderData")));
+    if (localStorage.getItem("reminderData") === null) {
+      localStorage.setItem("reminderData", JSON.stringify(dummy));
     }
+    setReminderList(JSON.parse(localStorage.getItem("reminderData")));
   }, []);
 
   const addDummy = () => {
@@ -58,15 +59,6 @@ const Reminder = () => {
     localStorage.setItem("reminderData", JSON.stringify(reminderList)); //리마인더리스트를 로컬스토리지에 저장
   }, [reminderList]);
 
-  // const setName = (e) => {    // 이름변경  함수
-  //   let list2 = reminderList.map((el) => {
-  //     if (e.id === el.id) {
-  //       el.name = "입력창 뜨게하기" ; // 온클릭 후 온체인지 팝업 떠서
-  //     }
-  //       return el;
-  //   });
-  //   setReminderList([...toggleList]);
-  // }
   return (
     <div className="container__reminder">
       <h3 className="reminder__title">Reminder</h3>
@@ -82,7 +74,6 @@ const Reminder = () => {
             toggleHandler={() => toggleHandler(e)}
             reminderList={reminderList}
             setReminderList={setReminderList}
-            // setName={() => setName(e)}
           />
         );
       })}
