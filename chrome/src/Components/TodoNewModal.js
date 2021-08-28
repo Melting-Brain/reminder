@@ -1,7 +1,7 @@
 import React from 'react';
 import "./TodoNewModal.css";
 import TimeSelector2 from "./TimeSelector2";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import uuid from "react-uuid"
 
 const TodoNewModal = ({ openNewModalHandler, isNewOpen, setIsNewOpen, setTodoList, checkDeadLine, isAlert, content, todoList }) => {
@@ -44,16 +44,10 @@ const TodoNewModal = ({ openNewModalHandler, isNewOpen, setIsNewOpen, setTodoLis
         isAlert: false,
         isEditOpen2: false,
       });
-      // setTime({ value: new Date().toString().split(' ')[4] })
+      setTime({ value: new Date().toString().split(' ')[4] })
     }
   }
 
-
-  const changeTime = (value) => {
-    setTime(value)
-    setInputValue(Object.assign({}, inputValue, {deadLine: value}));
-    console.log(inputValue)
-  }
 
   const [buttonChecked, setButtonChecked] = useState(false);
 

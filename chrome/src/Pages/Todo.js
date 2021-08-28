@@ -4,6 +4,7 @@ import "./Todo.css";
 import uuid from "react-uuid";
 import TodoNewModal from "../Components/TodoNewModal"
 
+
 const Todo = () => {
   const todoDummy = [
     {
@@ -11,46 +12,46 @@ const Todo = () => {
       name: '1',
       isChecked: false,
       checkDeadLine: true,
-      deadLine: '14:00',
+      deadLine: '23:59',
       isAlert: true,
       isEditOpen2: false,
-    },
-    {
-      id: uuid(),
-      name: '2',
-      isChecked: false,
-      checkDeadLine: true,
-      deadLine: '날짜 추가하기',
-      isAlert: true,
-      isEditOpen2: false,
-    },
-    {
-      id: uuid(),
-      name: '3',
-      isChecked: false,
-      checkDeadLine: true,
-      deadLine: '날짜 추가하기',
-      isAlert: true,
-      isEditOpen2: false,
-    },
-    {
-      id: uuid(),
-      name: '4',
-      isChecked: false,
-      checkDeadLine: true,
-      deadLine: '날짜 추가하기',
-      isAlert: true,
-      isEditOpen2: false,
-    },
-    {
-      id: uuid(),
-      name: '5',
-      isChecked: false,
-      checkDeadLine: true,
-      deadLine: '날짜 추가하기',
-      isAlert: true,
-      isEditOpen2: false,
-    },
+    }
+    // {
+    //   id: uuid(),
+    //   name: '2',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '23:58',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
+    // {
+    //   id: uuid(),
+    //   name: '3',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '22:57',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
+    // {
+    //   id: uuid(),
+    //   name: '4',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '23:56',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
+    // {
+    //   id: uuid(),
+    //   name: '5',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '22:55',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
   ];
 
   const [todoList, setTodoList] = useState(todoDummy);
