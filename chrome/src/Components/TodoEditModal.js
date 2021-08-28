@@ -4,7 +4,19 @@ import TimeSelector from "./TimeSelector";
 import { useState } from 'react';
 // import uuid from "react-uuid"
 
-const TodoEditModal = ({ openEditModalHandler, isEditOpen, setTodoList, todoList, checkDeadLine, isAlert, id, name, content }) => {
+const TodoEditModal = ({ openEditModalHandler, isEditOpen, setTodoList, todoList, checkDeadLine, deadLine, isAlert, id, name, content }) => {
+
+  const [Time,setTime] = useState({ value: deadLine })
+
+  const changeTime = (value) => {
+    setTime( value )
+    setTodoList([...todoList.map(el => {
+      if (el.id === content.id) {
+        el.deadLine = value.value
+      }
+      return el
+    })])
+  }
 
   const editTodoDummy = (content) => {
     setTodoList([...todoList.map(el => {
@@ -23,10 +35,11 @@ const TodoEditModal = ({ openEditModalHandler, isEditOpen, setTodoList, todoList
 
   const [buttonChecked2, setButtonChecked2] = useState(content.checkDeadLine);
 
-  const editTodo = (content) => {
+  const editTodo = (content, value) => {
     if (content.name.length > 0) {
       openEditModalHandler();
-      editTodoDummy(content);   // 이거 할 것 
+      editTodoDummy(content);  
+      changeTime(value);
     }
   }
 
@@ -40,16 +53,16 @@ const TodoEditModal = ({ openEditModalHandler, isEditOpen, setTodoList, todoList
     })])
   }
 
-  const editAlarm = () => {
+  const editAlarm = (e) => {
     setTodoList([...todoList.map(el => {
       if (el.id === content.id) {
-        el.isAlert = !isAlert
+        el.isAlert = e;
       }
       return el
     })])
   }
 
-  const editDeadline = () => {
+  const editCheckDeadline = () => {
     setTodoList([...todoList.map(el => {
       if (el.id === content.id) {
         el.checkDeadLine = !checkDeadLine
@@ -85,14 +98,14 @@ const TodoEditModal = ({ openEditModalHandler, isEditOpen, setTodoList, todoList
           <div className='modalView' onClick={(e) => e.stopPropagation()}>
             <h3>새로운 할 일</h3>
             <input type='text' defaultValue={content.name} onChange={(e) => editNameValue(e.target.value)} placeholder='내용을 입력해주세요.' />
-            <label><input type='checkbox' defaultChecked={content.checkDeadLine} onChange={editDeadline} />마감시간 설정</label>
+            <label><input type='checkbox' defaultChecked={content.checkDeadLine} onChange={editCheckDeadline} />마감시간 설정</label>
             {buttonChecked2 ?
               <>
-                <TimeSelector />
-                <label><input type='checkbox' onChange={editAlarm} defaultChecked={content.isAlert} />10분 전 미리 알림</label> </>
+                <TimeSelector setTime={setTime} Time={Time}/>
+                <label><input type='checkbox' onChange={(e) => editAlarm(e.target.checked)} defaultChecked={content.isAlert} />10분 전 미리 알림</label> </>
               : null}
             <button onClick={handleCancle} >취소</button>
-            <button onClick={() => editTodo(content)}>수정</button>
+            <button onClick={() => editTodo(content, Time)}>수정</button>
           </div>
         </div>
       }

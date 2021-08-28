@@ -1,32 +1,58 @@
 import React from 'react';
 import "./TodoNewModal.css";
-import TimeSelector from "./TimeSelector";
-import { useState } from 'react';
+import TimeSelector2 from "./TimeSelector2";
+import { useState, useEffect } from 'react';
 import uuid from "react-uuid"
 
-const TodoNewModal = ({ openNewModalHandler, isNewOpen, setTodoList, addTodoDummy, checkDeadLine, isAlert }) => {
+const TodoNewModal = ({ openNewModalHandler, isNewOpen, setIsNewOpen, setTodoList, checkDeadLine, isAlert, content, todoList }) => {
+
+  const [Time,setTime] = useState({ value: new Date().toString().split(' ')[4] })
+  
   const [inputValue, setInputValue] = useState({
     id: uuid(),
     name: '',
     isChecked: false,
     checkDeadLine: false,
-    deadLine: '날짜 추가하기',
+    deadLine: Time.value,
     isAlert: false,
+    isEditOpen2: false,
   });
+  
+  // useEffect (() => {
+  //   console.log(inputValue)
+  // },[inputValue])
 
-  const createTodo = (inputValue) => {
+
+  const addTodoDummy = (toDoObj) => {
+    setIsNewOpen(!isNewOpen)
+    setTodoList([
+      ...todoList,
+      toDoObj,
+    ]);
+  };
+  
+  const createTodo = (inputValue, value) => {
     if (inputValue.name.length > 0) {
       setButtonChecked(false);
-      addTodoDummy(inputValue);
+      addTodoDummy(inputValue); // 더미에 넣고 ->
       setInputValue({
         id: uuid(),
         name: '',
         isChecked: false,
         checkDeadLine: false,
-        deadLine: '날짜 추가하기',
+        deadLine: Time.value,
         isAlert: false,
+        isEditOpen2: false,
       });
+      // setTime({ value: new Date().toString().split(' ')[4] })
     }
+  }
+
+
+  const changeTime = (value) => {
+    setTime(value)
+    setInputValue(Object.assign({}, inputValue, {deadLine: value}));
+    console.log(inputValue)
   }
 
   const [buttonChecked, setButtonChecked] = useState(false);
@@ -39,8 +65,9 @@ const TodoNewModal = ({ openNewModalHandler, isNewOpen, setTodoList, addTodoDumm
       name: '',
       isChecked: false,
       checkDeadLine: false,
-      deadLine: '날짜 추가하기',
+      deadLine: Time.value,
       isAlert: false,
+      isEditOpen2: false,
     })
   }
 
@@ -48,7 +75,7 @@ const TodoNewModal = ({ openNewModalHandler, isNewOpen, setTodoList, addTodoDumm
     setInputValue(Object.assign({}, inputValue, { isAlert: !isAlert }));
   }
 
-  const inputDeadline = () => {
+  const inputCheckDeadline = () => {
     setInputValue(Object.assign({}, inputValue, { checkDeadLine: !checkDeadLine }))
     setButtonChecked(!buttonChecked);
     if (buttonChecked) {
@@ -70,14 +97,14 @@ const TodoNewModal = ({ openNewModalHandler, isNewOpen, setTodoList, addTodoDumm
           <div className='modalView' onClick={(e) => e.stopPropagation()}>
             <h3>새로운 할 일</h3>
             <input type='text' onChange={(e) => inputNameValue(e.target.value)} placeholder="내용을 입력해주세요" />
-            <label><input type='checkbox' onChange={inputDeadline} />마감시간 설정</label>
+            <label><input type='checkbox' onChange={inputCheckDeadline} />마감시간 설정</label>
             {buttonChecked ?
               <>
-                <TimeSelector />
+                <TimeSelector2 setTime={setTime} Time={Time} setInputValue={setInputValue} inputValue={inputValue}/>
                 <label><input type='checkbox' onChange={inputAlarm} />10분 전 미리 알림</label> </>
               : null}
             <button onClick={handleCancle} >취소</button>
-            <button onClick={() => createTodo(inputValue)}>생성</button>
+            <button onClick={() => createTodo(inputValue, Time)}>생성</button>
           </div>
         </div>
       }

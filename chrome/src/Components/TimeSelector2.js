@@ -4,19 +4,24 @@ import { TimePicker } from 'react-rainbow-components';
 import "./TimeSelector.css"
 
 
-const TimeSelector = ({setTime,Time}) => {
+const TimeSelector2 = ({setTime,Time, inputValue, setInputValue}) => {
 const containerStyles = {
     maxWidth: 300, 
 };
+
+const changeTime = ({value}) => {
+  setTime({value})
+  setInputValue(Object.assign({}, inputValue, {deadLine: value}));
+}
+
 // const initialState = { value: new Date() };
   return (
     <div>
-      {console.log(Time)}
         <TimePicker
             className="TimePicker"
             value={Time.value}
             label=""
-            onChange={value => setTime({value})}
+            onChange={value => changeTime({value})}
             style={containerStyles}
             // className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
         />
@@ -24,4 +29,4 @@ const containerStyles = {
   )
 }
 
-export default TimeSelector 
+export default TimeSelector2 

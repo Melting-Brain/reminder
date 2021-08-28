@@ -10,7 +10,8 @@ const TodoElement = ({
   setTodoList,
   handleCheckChange,
   isAlert,
-  deadline,
+  deadLine,
+  checkDeadLine,
   openEditModalHandler,
   isEditOpen,
   isEditOpen2,
@@ -35,9 +36,9 @@ const TodoElement = ({
         checked={isChecked}
       />
       <span>{name}</span>
-      {deadline ? (isAlert ? (<><i className="fas fa-bell"></i><span>{<i className="fas fa-stopwatch"></i>}</span></>) : <><i className="far fa-bell-slash"></i><span>{<i className="fas fa-stopwatch"></i>}</span></>) : null}
-      <span>{<i onClick={() => clickEdit(id)} className="fas fa-edit"></i>}</span>
-      {isEditOpen2 ? <TodoEditModal content={content} openEditModalHandler={openEditModalHandler} isEditOpen={isEditOpen} todoList={todoList} setTodoList={setTodoList} id={id} name={name} /> : null}
+      {!isChecked ? (checkDeadLine ? (isAlert ? (<><i className="fas fa-bell"></i><span>{<i className="fas fa-stopwatch"></i>}</span></>) : <><i className="far fa-bell-slash"></i><span>{<i className="fas fa-stopwatch"></i>}</span></>) : null) : null}
+      {!isChecked ? <span>{<i onClick={() => clickEdit(id)} className="fas fa-edit"></i>}</span> : null }
+      {isEditOpen2 ? <TodoEditModal deadLine={deadLine} checkDeadLine={checkDeadLine} content={content} openEditModalHandler={openEditModalHandler} isEditOpen={isEditOpen} todoList={todoList} setTodoList={setTodoList} id={id} name={name} /> : null}
       <div className="todo__delete" onClick={deleteTodoDummy}>
         X
       </div>

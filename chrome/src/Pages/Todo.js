@@ -11,7 +11,7 @@ const Todo = () => {
       name: '1',
       isChecked: false,
       checkDeadLine: true,
-      deadLine: '날짜 추가하기',
+      deadLine: '14:00',
       isAlert: true,
       isEditOpen2: false,
     },
@@ -65,14 +65,6 @@ const Todo = () => {
     setIsEditOpen(!isEditOpen);
   }
 
-  const addTodoDummy = (toDoObj) => {
-    setIsNewOpen(!isNewOpen)
-    setTodoList([
-      ...todoList,
-      toDoObj,
-    ]);
-  };
-
   const deleteTodoDummy = (e) => {
     setTodoList(todoList.filter((el) => el.id !== e.id));
   };
@@ -107,7 +99,8 @@ const Todo = () => {
             handleCheckChange={handleCheckChange}
             deleteTodoDummy={() => deleteTodoDummy(e)}
             isAlert={e.isAlert}
-            deadline={e.checkDeadLine}
+            deadLine={e.deadLine}
+            checkDeadLine={e.checkDeadLine}
             openEditModalHandler={openEditModalHandler}
             isEditOpen={isEditOpen}
             isEditOpen2={e.isEditOpen2}
@@ -119,7 +112,7 @@ const Todo = () => {
         <div className="todo__add" onClick={openNewModalHandler} >
           +
         </div>
-        <TodoNewModal openNewModalHandler={openNewModalHandler} isNewOpen={isNewOpen} setTodoList={setTodoList} addTodoDummy={addTodoDummy} />
+        <TodoNewModal openNewModalHandler={openNewModalHandler} setIsNewOpen={setIsNewOpen} isNewOpen={isNewOpen} setTodoList={setTodoList} todoList={todoList}/>
       </div>
       <div><h3>Done List</h3></div>
       {doneList.map((e) => {
@@ -134,7 +127,8 @@ const Todo = () => {
             handleCheckChange={handleCheckChange}
             deleteTodoDummy={() => deleteTodoDummy2(e)}
             isAlert={e.isAlert}
-            deadline={e.checkDeadLine}
+            deadLine={e.deadLine}
+            checkDeadLine={e.checkDeadLine}
             openEditModalHandler={openEditModalHandler}
             isEditOpen={isEditOpen}
             isEditOpen2={e.isEditOpen2}
