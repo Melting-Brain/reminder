@@ -2,38 +2,69 @@ import { useState } from "react";
 import TodoElement from "../Components/TodoElement";
 import "./Todo.css";
 import uuid from "react-uuid";
+import TodoNewModal from "../Components/TodoNewModal"
+
 
 const Todo = () => {
   const todoDummy = [
     {
       id: uuid(),
-      name: "복습하기",
+      name: '1',
       isChecked: false,
-    },
-    {
-      id: uuid(),
-      name: "비타민챙겨먹기",
-      isChecked: false,
-    },
+      checkDeadLine: true,
+      deadLine: '23:59',
+      isAlert: true,
+      isEditOpen2: false,
+    }
+    // {
+    //   id: uuid(),
+    //   name: '2',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '23:58',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
+    // {
+    //   id: uuid(),
+    //   name: '3',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '22:57',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
+    // {
+    //   id: uuid(),
+    //   name: '4',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '23:56',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
+    // {
+    //   id: uuid(),
+    //   name: '5',
+    //   isChecked: false,
+    //   checkDeadLine: true,
+    //   deadLine: '22:55',
+    //   isAlert: true,
+    //   isEditOpen2: false,
+    // },
   ];
 
   const [todoList, setTodoList] = useState(todoDummy);
   const [doneList, setDoneList] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const openModalHandler = () => {
-    setIsOpen(!isOpen)
+  const [isNewOpen, setIsNewOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const openNewModalHandler = () => {
+    setIsNewOpen(!isNewOpen);
   };
 
-  const addTodoDummy = () => {
-    setTodoList([
-      ...todoList,
-      {
-        id: uuid(),
-        name: "입력바람",
-        isChecked: false,
-      },
-    ]);
-  };
+  const openEditModalHandler = () => {
+    setIsEditOpen(!isEditOpen);
+  }
 
   const deleteTodoDummy = (e) => {
     setTodoList(todoList.filter((el) => el.id !== e.id));
@@ -44,7 +75,7 @@ const Todo = () => {
   }
 
   const handleCheckChange = (check, id) => {
-    if(check) {
+    if (check) {
       setDoneList([...doneList, ...todoList.filter((el) => el.id === id)])
       setTodoList(todoList.filter((el) => el.id !== id))
     }
@@ -60,6 +91,7 @@ const Todo = () => {
       {todoList.map((e) => {
         return (
           <TodoElement
+            key={e.id}
             name={e.name}
             id={e.id}
             isChecked={e.isChecked}
@@ -67,27 +99,27 @@ const Todo = () => {
             setTodoList={setTodoList}
             handleCheckChange={handleCheckChange}
             deleteTodoDummy={() => deleteTodoDummy(e)}
+            isAlert={e.isAlert}
+            deadLine={e.deadLine}
+            checkDeadLine={e.checkDeadLine}
+            openEditModalHandler={openEditModalHandler}
+            isEditOpen={isEditOpen}
+            isEditOpen2={e.isEditOpen2}
+            content={e}
           />
-        );
+        )
       })}
       <div className="todo__container__add">
-        <div className="todo__add" onClick={openModalHandler}>
+        <div className="todo__add" onClick={openNewModalHandler} >
           +
         </div>
-        {isOpen === false ? 
-          null :
-        <div className='modalBackdrop' onClick={openModalHandler}>
-          <div className='modalView' onClick={(e) => e.stopPropagation()}>
-            <div onClick={openModalHandler} className='close-btn'>&times;</div>
-            <div className='desc'>Hi Hello?</div>
-          </div>
-        </div>
-      }
+        <TodoNewModal openNewModalHandler={openNewModalHandler} setIsNewOpen={setIsNewOpen} isNewOpen={isNewOpen} setTodoList={setTodoList} todoList={todoList}/>
       </div>
       <div><h3>Done List</h3></div>
       {doneList.map((e) => {
         return (
           <TodoElement
+            key={e.id}
             id={e.id}
             name={e.name}
             isChecked={true}
@@ -95,6 +127,13 @@ const Todo = () => {
             setTodoList={setTodoList}
             handleCheckChange={handleCheckChange}
             deleteTodoDummy={() => deleteTodoDummy2(e)}
+            isAlert={e.isAlert}
+            deadLine={e.deadLine}
+            checkDeadLine={e.checkDeadLine}
+            openEditModalHandler={openEditModalHandler}
+            isEditOpen={isEditOpen}
+            isEditOpen2={e.isEditOpen2}
+            content={e}
           />
         );
       })}

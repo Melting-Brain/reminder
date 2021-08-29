@@ -1,4 +1,6 @@
 import "./TodoElement.css";
+import TodoEditModal from "./TodoEditModal.js"
+import TodoCountDown from "./TodoCountDown.js"
 
 const TodoElement = ({
   id,
@@ -7,21 +9,41 @@ const TodoElement = ({
   deleteTodoDummy,
   todoList,
   setTodoList,
-  handleCheckChange
+  handleCheckChange,
+  isAlert,
+  deadLine,
+  checkDeadLine,
+  openEditModalHandler,
+  isEditOpen,
+  isEditOpen2,
+  content
 }) => {
+
+  const clickEdit = (id) => {
+    openEditModalHandler();
+    setTodoList([...todoList.map(el => {
+      if (el.id === id) {
+        el.isEditOpen2 = true
+      }
+      return el
+    })]);
+  }
+
   return (
     <div className="todoElement">
-      <input 
+      <input
         type="checkbox"
-        value={id}
         onChange={(e) => handleCheckChange(e.target.checked, id)}
         checked={isChecked}
-        />
+      />
       <span>{name}</span>
+      {!isChecked ? (checkDeadLine ? (isAlert ? (<><i className="fas fa-bell"></i><span>{<TodoCountDown deadLine={deadLine}/>}</span></>) : <><i className="far fa-bell-slash"></i><span>{<TodoCountDown deadLine={deadLine}/>}</span></>) : null) : null}
+      {!isChecked ? <span>{<i onClick={() => clickEdit(id)} className="fas fa-edit"></i>}</span> : null }
+      {isEditOpen2 ? <TodoEditModal deadLine={deadLine} checkDeadLine={checkDeadLine} content={content} openEditModalHandler={openEditModalHandler} isEditOpen={isEditOpen} todoList={todoList} setTodoList={setTodoList} id={id} name={name} /> : null}
       <div className="todo__delete" onClick={deleteTodoDummy}>
         X
       </div>
-    </div>
+    </div >
   );
 }
 
