@@ -1,35 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReminderElement from "../Components/ReminderElement";
-import "./Reminder.css";
+import "../Style/Reminder.css";
 import uuid from "react-uuid";
 
 const Reminder = () => {
   const dummy = [
     {
-      id: uuid(),
+      id: 1,
       name: "물 마시기",
       time: 30,
       isOn: true,
     },
     {
-      id: uuid(),
+      id: 2,
       name: "스트레칭",
       time: 60,
       isOn: true,
     },
   ];
 
-  const [reminderList, setReminderList] = useState(dummy);
+  const dummyName = ['물 마시기', '비타민 먹기', '자리에서 일어나기', '기지개 펴기', '알람 확인하기', '약 먹기', '커피 마시기', '메일 확인하기', '닭가슴살 먹기', '영양제 먹기']
 
-  const addDummy = () => {
+  const [reminderList, setReminderList] = useState([]);
+
+  useEffect(() => {
+    if (localStorage.getItem("reminderData") === null) {
+      localStorage.setItem("reminderData", JSON.stringify(dummy));
+    }
+    setReminderList(JSON.parse(localStorage.getItem("reminderData")));
+  }, []);
+
+  const addReminder = () => {
     setReminderList([
-      ...reminderList,
       {
         id: uuid(),
-        name: "입력바람",
-        time: "시간설정",
+        name: dummyName[Math.floor(Math.random()*10)],
+        time: 10,
         isOn: true,
       },
+      ...reminderList,
     ]);
   };
 
@@ -42,41 +51,39 @@ const Reminder = () => {
     let toggleList = reminderList.map((el) => {
       if (e.id === el.id) {
         el.isOn = !el.isOn;
-        console.log("바꿈");
       }
       return el;
     });
     setReminderList([...toggleList]);
   };
 
-  // const setName = (e) => {    // 이름변경  함수
-  //   let list2 = reminderList.map((el) => {
-  //     if (e.id === el.id) {
-  //       el.name = "입력창 뜨게하기" ; // 온클릭 후 온체인지 팝업 떠서
-  //     }
-  //       return el;
-  //   });
-  //   setReminderList([...toggleList]);
-  // }
+  useEffect(() => {
+    localStorage.setItem("reminderData", JSON.stringify(reminderList)); //리마인더리스트를 로컬스토리지에 저장
+  }, [reminderList]);
+
   return (
     <div className="container__reminder">
       <h3 className="reminder__title">Reminder</h3>
-      {reminderList.map((e) => {
+      <div className="reminder__container__list">
+      {reminderList.map((e, idx) => {
         return (
           <ReminderElement
+            idx={idx}
             key={e.id}
             name={e.name}
             time={e.time}
             isOn={e.isOn}
             deleteDummy={() => deleteDummy(e)}
             toggleHandler={() => toggleHandler(e)}
-            // setName={() => setName(e)}
+            reminderList={reminderList}
+            setReminderList={setReminderList}
           />
         );
       })}
+      </div>
       <div className="reminder__container__add">
-        <div className="reminder__add" onClick={addDummy}>
-          +
+        <div className="reminder__add" onClick={addReminder}>
+          <i className="fas fa-plus"></i>
         </div>
       </div>
     </div>

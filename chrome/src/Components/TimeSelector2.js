@@ -1,7 +1,7 @@
 import React from 'react';
 import { TimePicker } from 'react-rainbow-components';
 // import { useState } from "react";
-import "./TimeSelector.css"
+import "../Style/TimeSelector.css"
 
 
 const TimeSelector2 = ({setTime,Time, inputValue, setInputValue}) => {

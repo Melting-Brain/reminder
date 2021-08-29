@@ -1,5 +1,5 @@
 import React from 'react';
-import "./TodoNewModal.css";
+import "../Style/TodoNewModal.css";
 import TimeSelector from "./TimeSelector";
 import { useState } from 'react';
 // import uuid from "react-uuid"
@@ -104,8 +104,10 @@ const TodoEditModal = ({ openEditModalHandler, isEditOpen, setTodoList, todoList
                 <TimeSelector setTime={setTime} Time={Time}/>
                 <label><input type='checkbox' onChange={(e) => editAlarm(e.target.checked)} defaultChecked={content.isAlert} />10분 전 미리 알림</label> </>
               : null}
-            <button onClick={handleCancle} >취소</button>
-            <button onClick={() => editTodo(content, Time)}>수정</button>
+              <div className="buttons">
+            <div className='button' onClick={handleCancle} >취소</div>
+            <div className='button' onClick={() => editTodo(content, Time)}>수정</div>
+            </div>
           </div>
         </div>
       }

@@ -1,0 +1,47 @@
+.container__reminder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* input css reset */
+input[type="text"] {
+  width: 100%; /* 나중에 원하는 사이즈로 수정 */
+  height: auto; /* 높이 초기화 */
+  font-family: inherit;
+  line-height: normal; /* line-height 초기화 */
+  border: none;
+  outline-style: none;
+  background: none;
+}
+
+
+.reminder__container__list {
+  width: 100%;
+  max-height: 340px;
+  padding-left: 10px;
+  overflow: auto;
+}
+
+.reminder__container__add {
+  width: 75%;
+  height: 46px;
+  padding: 10px 14px;
+  margin: 10px 20px;
+  background-color: var(--color-background-yellow);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reminder__add {
+  width: 30px;
+  height: 30px;
+  color: var(--color-white);
+  text-align: center;
+  line-height: 30px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+}

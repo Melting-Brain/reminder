@@ -1,5 +1,5 @@
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import './TodoCountDown.css'
+import '../Style/TodoCountDown.css'
 import { useState, useEffect } from 'react';
 import React from 'react';
 
@@ -13,7 +13,7 @@ const TodoCountDown = ({deadLine}) => {
   
   useEffect(() => {
     setRemainTime(result > now ? (result - now) / 1000 : 0);
-    setKey(key + 1);
+    setKey(key => key + 1);
   }, [deadLine])
 
   const formatRemainingTime = (time) => {
@@ -50,7 +50,7 @@ const TodoCountDown = ({deadLine}) => {
           isPlaying
           isLinearGradient={true}
           duration={remainTime}
-          size={30}
+          size={40}
           strokeWidth={1}
           colors={[["#3E82D6", 0.33], ["#69A8A0", 0.33], ["#90C670", 0.33]]}
         >

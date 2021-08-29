@@ -1,0 +1,143 @@
+.todoElement {
+  width: 80%;
+  height: 46px;
+  padding: 10px 10px;
+  margin: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(204, 182, 74, 0.1);
+  border-radius: 10px;
+}
+
+.todo__check {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.todo__name {
+  flex: 2 1 auto;
+  height: 46px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.fas.fa-bell {
+  flex: 1 1 auto;
+}
+
+.fas.fa-bell::before {
+  cursor: pointer;
+  color: #3E82D6;
+  flex: 1 1 auto;
+}
+
+.far.fa-bell-slash::before {
+  cursor: pointer;
+  color: #3E82D6;
+  flex: 1 1 auto;
+}
+
+
+.far.fa-trash-alt::before {
+  flex: 1 1 auto;
+  cursor: pointer;
+}
+
+.fas.fa-edit {
+  cursor: pointer;
+  color: #3E82D6;
+  flex: 1 1 auto;
+}
+
+/* deadline icons */
+.todoElement i {
+  width: 16px;
+  font-size: 0.7rem;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+body {
+  font-family: Avenir;
+  font-size: 16px;
+}
+
+
+/* checkbox */
+/* .label-cbx {
+  user-select: none;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.label-cbx input:checked + .checkbox {
+  border-color: #20C2E0;
+}
+
+.label-cbx input:checked + .checkbox svg path {
+  fill: #20C2E0;
+}
+
+.label-cbx input:checked + .checkbox svg polyline {
+  stroke-dashoffset: 0;
+}
+
+.label-cbx:hover .checkbox svg path {
+  stroke-dashoffset: 0;
+}
+
+.label-cbx .checkbox {
+  position: relative;
+  top: 0px;
+  float: left;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #C8CCD4;
+  border-radius: 3px;
+}
+
+.label-cbx .checkbox svg {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+}
+
+.label-cbx .checkbox svg path {
+  fill: none;
+  stroke: #20C2E0;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 71px;
+  stroke-dashoffset: 71px;
+  transition: all .6s ease;
+}
+
+.label-cbx .checkbox svg polyline {
+  fill: none;
+  stroke: #FFF;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 20px;
+  stroke-dashoffset: 20px;
+  transition: all .3s ease;
+}
+
+.label-cbx > span {
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+
+.invisible {
+  position: absolute;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+ */

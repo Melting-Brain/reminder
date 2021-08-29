@@ -1,5 +1,5 @@
 import React from 'react';
-import "./TodoNewModal.css";
+import "../Style/TodoNewModal.css";
 import TimeSelector2 from "./TimeSelector2";
 import { useState } from 'react';
 import uuid from "react-uuid"
@@ -26,8 +26,8 @@ const TodoNewModal = ({ openNewModalHandler, isNewOpen, setIsNewOpen, setTodoLis
   const addTodoDummy = (toDoObj) => {
     setIsNewOpen(!isNewOpen)
     setTodoList([
-      ...todoList,
       toDoObj,
+      ...todoList,
     ]);
   };
   
@@ -97,8 +97,10 @@ const TodoNewModal = ({ openNewModalHandler, isNewOpen, setIsNewOpen, setTodoLis
                 <TimeSelector2 setTime={setTime} Time={Time} setInputValue={setInputValue} inputValue={inputValue}/>
                 <label><input type='checkbox' onChange={inputAlarm} />10분 전 미리 알림</label> </>
               : null}
-            <button onClick={handleCancle} >취소</button>
-            <button onClick={() => createTodo(inputValue, Time)}>생성</button>
+            <div className="buttons">
+              <div className='button' onClick={handleCancle}>취소</div>
+              <div className='button' onClick={() => createTodo(inputValue, Time)}>생성</div>
+            </div>
           </div>
         </div>
       }

@@ -1,0 +1,66 @@
+.modalBackdrop {
+  /* position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #F0FFFF;
+  display: grid; 
+  place-items: center; */
+  position : fixed;
+  z-index : 1;
+  top : 0;
+  left : 0;
+  bottom: 0;
+  right : 0;
+  background-color : rgba(0,0,0,0.4);
+  display : grid;
+  place-items: center;
+}
+
+.modalView {
+  /* width: 30%;
+  height: 30%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; */
+  width: 80%;
+  height: 60%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction : column;
+}
+
+.close_btn { 
+  margin-top: 5%;
+  text-align: right;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+/* .desc {
+  text-align : center;
+  margin-top : 5%;
+  color: #4000c7;
+} */
+
+.buttons {
+  display: flex;
+}
+.button {
+  height: 30px;
+  margin: 20px;
+  color: var(--color-white);
+  font-weight: bold;
+  text-shadow: 0 0 3px rgb(245, 206, 13);
+  text-align: center;
+  line-height: 30px;
+  background-color: var(--color-yellow);
+  border-radius: 10px;
+  flex: 1;
+}

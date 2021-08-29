@@ -7,14 +7,17 @@
 }
 
 .nav_btn {
-    background-color: rgb(148, 225, 148);
+    background-color: #FFDA26;;
+    color: rgb(63, 63, 63);
     margin: 5px 10px;
     width: 50px;
+    font-weight: bold;
     height: 30px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 8px;
 }
 
 a {

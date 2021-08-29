@@ -1,0 +1,94 @@
+/** reminderElement **/
+.reminderElement {
+  width: 75%;
+  height: 46px;
+  padding: 10px 14px;
+  margin: 10px 20px;
+  background-color: var(--color-background-yellow);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reminder__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* reminderElement - Input Name */
+.reminder__edit__name {
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+/* reminderElement - Toggle Button */
+.reminder__toggle__container {
+  width: 20px;
+  height: 12px;
+  background-color: var(--color-yellow);
+  border-radius: 6px;
+  position: relative;
+}
+.reminder__toggle__circle {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 10px;
+}
+.reminder__toggle__container__false {
+  background-color: var(--color-background-yellow);
+}
+.reminder__toggle__circle__false {
+  left: 2px;
+}
+
+/* reminderElement - Input Time */
+.reminder__edit__time {
+  flex: 9;
+  display: flex;
+  justify-content: space-between;
+}
+.reminder__adjust__time {
+  text-align: right;
+}
+.reminder__display__time {
+  font-size: 0.75rem;
+}
+
+/* reminder delete */
+.reminder__delete {
+  text-align: right;
+  flex: 1;
+}
+.far.fa-trash-alt {
+  color: rgb(250, 87, 119);
+}
+
+/* input range */
+input[type="range"] {
+  -webkit-appearance: none;
+  overflow: hidden;
+  height: 10px;
+  margin-top: 4.5px;
+  background: rgba(176, 176, 246, 0.2);
+  cursor: pointer;
+  border-radius: 5px; /* iOS */
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #3E82D6;  /* rgb(176, 176, 246);*/
+  box-shadow: -100vw 0 0 100vw #3E82D6; /*rgb(176, 176, 246);*/
+  cursor: pointer;
+}

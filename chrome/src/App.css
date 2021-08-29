@@ -6,12 +6,15 @@
   --title-size: 15px;
 
   /* color */
+  --color-yellow: #FFDA26;
+  --color-background-yellow: rgba(204, 182, 74, 0.1);
   --color-darkblue: #036f93;
   --color-blue: #13a4d4;
-  --color-lightblue: #74cae7;
+  --color-lightblue: #FFDA26;
   --color-grey: #eeeeee;
   --color-black: #333333;
   --color-white: #ffffff;
+  --color-background: rgba(116, 202, 231, 0.1);
   --color-btn: #74cae7;
 }
 
@@ -34,3 +37,4 @@
   width: 50px;
   height: 50px;
 }
+

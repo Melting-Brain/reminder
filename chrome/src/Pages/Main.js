@@ -1,4 +1,4 @@
-import "./Main.css";
+import "../Style/Main.css";
 const Main = () => {
   return (
     <div className="container__main">
