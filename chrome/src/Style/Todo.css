@@ -55,7 +55,7 @@
   height: 30px;
   color: var(--color-white);
   text-align: center;
-  line-height: 30px;
+  line-height: 32px;
   background: var(--color-lightblue);
   border-radius: 50%;
 }

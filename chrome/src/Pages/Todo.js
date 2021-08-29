@@ -145,7 +145,7 @@ const Todo = () => {
       })}
       </div>
       <div className='title__wrapper'>
-      <h3>Done List</h3>
+      <h3 className='todo__title'>Done List</h3>
       <div className="todo__container__delete">
           <div className="todo__doneList__delete" onClick={clearDoneList}>
           <i className="fas fa-minus"/>
