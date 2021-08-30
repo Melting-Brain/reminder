@@ -11,7 +11,6 @@ const containerStyles = {
 // const initialState = { value: new Date() };
   return (
     <div>
-      {console.log(Time)}
         <TimePicker
             className="TimePicker"
             value={Time.value}

@@ -26,7 +26,7 @@ function App() {
           </Switch>
         </div>
       </BrowserRouter>
-      </div>
+    </div>
   );
 }
 
