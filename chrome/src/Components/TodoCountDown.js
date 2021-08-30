@@ -22,8 +22,8 @@ const TodoCountDown = ({deadLine}) => {
     const seconds = Math.floor(time % 60);
     let result;
     if (time < 60) result =`${seconds}s`
-    else if (60 < time && time < 3600) result = `${minutes}m`
-    else result = `${hours}h`
+    else if (60 < time && time < 3600) result = `${minutes}m:${seconds}s`
+    else result = `${hours}h:${minutes}m`
     return result  
   };
 
